@@ -1,4 +1,3 @@
-
 document.getElementById('get-weather').addEventListener('click', function() {
     const cityName = document.getElementById('city-input').value;
     if (!cityName) {
@@ -6,8 +5,7 @@ document.getElementById('get-weather').addEventListener('click', function() {
         return;
     }
 
-    const apiKey = 'YOUR_API_KEY';  // Replace with your API key from WeatherAPI.com
-    const apiUrl = `http://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${cityName}&aqi=no`;
+    const apiUrl = `/weather?city=${cityName}`;
 
     fetch(apiUrl)
         .then(response => response.json())
@@ -31,17 +29,3 @@ document.getElementById('get-weather').addEventListener('click', function() {
             alert('Failed to load weather data');
         });
 });
-
-// Function to initialize map using Google Maps API
-function initMap(lat, lon) {
-    const map = new google.maps.Map(document.getElementById('weather-map'), {
-        center: { lat: lat, lng: lon },
-        zoom: 8,
-    });
-
-    new google.maps.Marker({
-        position: { lat: lat, lng: lon },
-        map: map,
-        title: 'Weather Location'
-    });
-}
